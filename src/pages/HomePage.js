@@ -11,7 +11,6 @@ const HomePage = () => {
       {/* <ExpertiseSection /> */}
       {/* <CompaniesSection /> */}
       {/* <AchievementsSection /> */}
-      {/* <ContactSection /> */}
     </div>
   );
 };

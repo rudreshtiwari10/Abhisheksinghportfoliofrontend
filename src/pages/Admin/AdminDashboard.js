@@ -64,6 +64,13 @@ const AdminDashboard = () => {
             <span>Custom Sections</span>
           </Link>
 
+          <div className="nav-section-title">Communications</div>
+
+          <Link to="/admin/messages" className={`admin-nav-item ${isActive('/admin/messages') || location.pathname.startsWith('/admin/messages/')}`}>
+            <span className="nav-icon">💬</span>
+            <span>Messages</span>
+          </Link>
+
           <div className="nav-section-title">Settings</div>
 
           <Link to="/admin/profile" className={`admin-nav-item ${isActive('/admin/profile')}`}>

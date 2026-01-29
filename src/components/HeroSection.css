@@ -1,5 +1,5 @@
 /* Hero Section - Elegant & Professional */
-/* .hero-section {
+ .hero-section {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -11,7 +11,7 @@
 }
 
 /* Animated Background */
-/* .hero-bg {
+.hero-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -67,7 +67,7 @@
 }
 
 /* Floating Dots */
-/*
+
 
 .social-icon {
   width: 48px;
@@ -91,7 +91,7 @@
 }
 
 /* Right Side - Image */
-/*.hero-image-container {
+.hero-image-container {
   position: relative;
   animation: slideInRight 1s ease-out 0.3s both;
 }
@@ -180,7 +180,7 @@
 }
 
 /* Floating Badges */
-/*.floating-badge {
+.floating-badge {
   position: absolute;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -237,7 +237,7 @@
 }
 
 /* Scroll Indicator */
-/*.scroll-indicator {
+.scroll-indicator {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -286,7 +286,7 @@
 }
 
 /* Responsive Design */
-/*@media (max-width: 1200px) {
+ @media (max-width: 1200px) {
   .hero-grid {
     gap: 60px;
   }
@@ -403,4 +403,4 @@
   .floating-shape {
     display: none;
   }
-}  */
+}  
