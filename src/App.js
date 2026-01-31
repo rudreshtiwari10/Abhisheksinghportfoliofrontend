@@ -7,12 +7,16 @@ import AdminLogin from './pages/Admin/AdminLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import DashboardHome from './pages/Admin/DashboardHome';
 import ExpertiseManage from './pages/Admin/ExpertiseManage';
+import BlogManage from './pages/Admin/BlogManage';
+import BlogEditor from './pages/Admin/BlogEditor';
 import MessagesManage from './pages/Admin/MessagesManage';
 import MessageDetail from './pages/Admin/MessageDetail';
 import ProtectedRoute from './components/Admin/ProtectedRoute';
 
-// Public Pages (to be built later)
+// Public Pages
 import HomePage from './pages/HomePage';
+import BlogList from './pages/BlogList';
+import BlogDetail from './pages/BlogDetail';
 
 // Global Components
 import FloatingContact from './components/FloatingContact';
@@ -30,6 +34,8 @@ function AppLayout() {
       <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
 
           {/* Admin Login Route (hidden, accessed by typing URL directly) */}
           <Route path="/admin-login" element={<AdminLogin />} />
@@ -52,6 +58,9 @@ function AppLayout() {
             {/* Content Management Routes */}
             <Route path="hero" element={<div style={{padding: '20px'}}>Hero Section Management (Coming Soon)</div>} />
             <Route path="about" element={<div style={{padding: '20px'}}>About Section Management (Coming Soon)</div>} />
+            <Route path="blog" element={<BlogManage />} />
+            <Route path="blog/create" element={<BlogEditor />} />
+            <Route path="blog/edit/:id" element={<BlogEditor />} />
             <Route path="expertise" element={<ExpertiseManage />} />
             <Route path="companies" element={<div style={{padding: '20px'}}>Companies Management (Coming Soon)</div>} />
             <Route path="achievements" element={<div style={{padding: '20px'}}>Achievements Management (Coming Soon)</div>} />

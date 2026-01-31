@@ -44,6 +44,11 @@ const AdminDashboard = () => {
             <span>About Section</span>
           </Link>
 
+          <Link to="/admin/blog" className={`admin-nav-item ${isActive('/admin/blog') || location.pathname.startsWith('/admin/blog/')}`}>
+            <span className="nav-icon">📝</span>
+            <span>Blog Posts</span>
+          </Link>
+
           <Link to="/admin/expertise" className={`admin-nav-item ${isActive('/admin/expertise')}`}>
             <span className="nav-icon">💡</span>
             <span>Expertise</span>
