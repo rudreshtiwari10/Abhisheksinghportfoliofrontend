@@ -11,6 +11,12 @@ import BlogManage from './pages/Admin/BlogManage';
 import BlogEditor from './pages/Admin/BlogEditor';
 import MessagesManage from './pages/Admin/MessagesManage';
 import MessageDetail from './pages/Admin/MessageDetail';
+import AboutManage from './pages/Admin/AboutManage';
+import CompanyManage from './pages/Admin/CompanyManage';
+import ServiceManage from './pages/Admin/ServiceManage';
+import GlobalPresenceManage from './pages/Admin/GlobalPresenceManage';
+import LeadershipPhilosophyManage from './pages/Admin/LeadershipPhilosophyManage';
+import AchievementManage from './pages/Admin/AchievementManage';
 import ProtectedRoute from './components/Admin/ProtectedRoute';
 
 // Public Pages
@@ -57,13 +63,16 @@ function AppLayout() {
 
             {/* Content Management Routes */}
             <Route path="hero" element={<div style={{padding: '20px'}}>Hero Section Management (Coming Soon)</div>} />
-            <Route path="about" element={<div style={{padding: '20px'}}>About Section Management (Coming Soon)</div>} />
+            <Route path="about" element={<AboutManage />} />
             <Route path="blog" element={<BlogManage />} />
             <Route path="blog/create" element={<BlogEditor />} />
             <Route path="blog/edit/:id" element={<BlogEditor />} />
             <Route path="expertise" element={<ExpertiseManage />} />
-            <Route path="companies" element={<div style={{padding: '20px'}}>Companies Management (Coming Soon)</div>} />
-            <Route path="achievements" element={<div style={{padding: '20px'}}>Achievements Management (Coming Soon)</div>} />
+            <Route path="companies" element={<CompanyManage />} />
+            <Route path="services" element={<ServiceManage />} />
+            <Route path="global-presence" element={<GlobalPresenceManage />} />
+            <Route path="leadership" element={<LeadershipPhilosophyManage />} />
+            <Route path="achievements" element={<AchievementManage />} />
             <Route path="sections" element={<div style={{padding: '20px'}}>Custom Sections Management (Coming Soon)</div>} />
 
             {/* Messages Management Routes */}

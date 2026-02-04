@@ -1,0 +1,434 @@
+/* Dynamic Island Container */
+.dynamic-island-container {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  gap: 1.5%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2%;
+  pointer-events: none;
+}
+
+.dynamic-island-container > * {
+  pointer-events: auto;
+}
+
+/* Base Island Styles */
+.main-island,
+.connect-island {
+  position: relative;
+  backdrop-filter: blur(20px) saturate(180%);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 15, 26, 0.85) 0%,
+    rgba(26, 26, 38, 0.90) 50%,
+    rgba(15, 15, 26, 0.85) 100%
+  );
+  border: 1.5px solid rgba(197, 160, 101, 0.3);
+  border-radius: 50px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(197, 160, 101, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+}
+
+.main-island {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.connect-island {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Island Content Wrapper */
+.island-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+/* Glow Effect */
+.island-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.2),
+    rgba(197, 160, 101, 0.1),
+    transparent
+  );
+  border-radius: 50px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.main-island:hover .island-glow,
+.connect-island:hover .island-glow {
+  opacity: 1;
+}
+
+/* Animated Background Shimmer */
+.main-island::before,
+.connect-island::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(197, 160, 101, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+  border-radius: 50px;
+}
+
+.main-island:hover::before,
+.connect-island:hover::before {
+  left: 100%;
+}
+
+/* Logo Section */
+.island-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.15),
+    rgba(197, 160, 101, 0.08)
+  );
+  border: 1px solid rgba(197, 160, 101, 0.2);
+  padding: 0.65rem 1.25rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.island-logo:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.25),
+    rgba(197, 160, 101, 0.15)
+  );
+  box-shadow: 0 4px 12px rgba(197, 160, 101, 0.2);
+  transform: translateY(-1px);
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(197, 160, 101, 0.4);
+  box-shadow: 0 2px 8px rgba(197, 160, 101, 0.2);
+}
+
+.logo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-text {
+  white-space: nowrap;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Cinzel', 'Playfair Display', 'Georgia', serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Divider */
+.island-divider {
+  width: 1.5px;
+  height: 36px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(197, 160, 101, 0.4),
+    transparent
+  );
+}
+
+/* Navigation Menu */
+.island-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.menu-item {
+  position: relative;
+  padding: 0.6rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+}
+
+.menu-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-item.active {
+  color: #ffffff;
+}
+
+.menu-item-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Active Indicator */
+.active-indicator {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.3),
+    rgba(197, 160, 101, 0.15)
+  );
+  border-radius: 30px;
+  box-shadow:
+    0 2px 8px rgba(197, 160, 101, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+/* Connect Island */
+.connect-island {
+  overflow: hidden;
+}
+
+.connect-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 40px;
+}
+
+.connect-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.2),
+    rgba(197, 160, 101, 0.1)
+  );
+  border: 1px solid rgba(197, 160, 101, 0.3);
+  color: #c5a065;
+  flex-shrink: 0;
+}
+
+.connect-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.connect-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+/* Connect Options */
+.connect-options {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  flex: 1;
+  width: 100%;
+  padding: 0 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.connect-options::-webkit-scrollbar {
+  display: none;
+}
+
+.connect-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.15),
+    rgba(197, 160, 101, 0.08)
+  );
+  border: 1px solid rgba(197, 160, 101, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: #ffffff;
+  min-width: 70px;
+  flex: 0 0 auto;
+}
+
+.connect-option:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(197, 160, 101, 0.3),
+    rgba(197, 160, 101, 0.15)
+  );
+  box-shadow: 0 4px 12px rgba(197, 160, 101, 0.25);
+  transform: translateY(-2px);
+}
+
+.option-icon {
+  font-size: 1.4rem;
+}
+
+.option-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .menu-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .dynamic-island-container {
+    gap: 2%;
+  }
+
+  .island-menu {
+    gap: 0.15rem;
+  }
+
+  .menu-item {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .logo-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .connect-option {
+    min-width: 50px;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .dynamic-island-container {
+    flex-direction: column;
+    gap: 0.75rem;
+    top: 1rem;
+  }
+
+  .main-island,
+  .connect-island {
+    width: 90vw !important;
+    max-width: 90vw;
+  }
+
+  .island-menu {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .island-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .connect-options {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .dynamic-island-container {
+    top: 0.5rem;
+  }
+
+  .main-island,
+  .connect-island {
+    padding: 0.6rem 1rem;
+    border-radius: 40px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .menu-item {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .island-divider {
+    height: 24px;
+  }
+
+  .connect-text {
+    font-size: 0.85rem;
+  }
+
+  .connect-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .option-name {
+    font-size: 0.65rem;
+  }
+}

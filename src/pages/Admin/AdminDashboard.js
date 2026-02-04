@@ -59,6 +59,21 @@ const AdminDashboard = () => {
             <span>Companies</span>
           </Link>
 
+          <Link to="/admin/services" className={`admin-nav-item ${isActive('/admin/services')}`}>
+            <span className="nav-icon">🚀</span>
+            <span>Services</span>
+          </Link>
+
+          <Link to="/admin/global-presence" className={`admin-nav-item ${isActive('/admin/global-presence')}`}>
+            <span className="nav-icon">🌍</span>
+            <span>Global Presence</span>
+          </Link>
+
+          <Link to="/admin/leadership" className={`admin-nav-item ${isActive('/admin/leadership')}`}>
+            <span className="nav-icon">🎯</span>
+            <span>Leadership Philosophy</span>
+          </Link>
+
           <Link to="/admin/achievements" className={`admin-nav-item ${isActive('/admin/achievements')}`}>
             <span className="nav-icon">🏆</span>
             <span>Achievements</span>
