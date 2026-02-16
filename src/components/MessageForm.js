@@ -21,7 +21,6 @@ const MessageForm = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -29,18 +28,16 @@ const MessageForm = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
 
-    // Clear error for this field
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
-  // Handle file selection
   const handleFileChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
-      // Validate file type
+
       const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!allowedTypes.includes(file.type)) {
         setErrors(prev => ({ ...prev, attachment: 'Only PDF, DOC, and DOCX files are allowed' }));
@@ -48,7 +45,6 @@ const MessageForm = () => {
         return;
       }
 
-      // Validate file size (5MB max)
       if (file.size > 5 * 1024 * 1024) {
         setErrors(prev => ({ ...prev, attachment: 'File size must be less than 5MB' }));
         e.target.value = '';
@@ -60,7 +56,6 @@ const MessageForm = () => {
     }
   };
 
-  // Validate form
   const validateForm = () => {
     const newErrors = {};
 
@@ -98,7 +93,6 @@ const MessageForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -110,7 +104,7 @@ const MessageForm = () => {
     setSubmitError('');
 
     try {
-      // Prepare form data for multipart/form-data
+
       const submitData = new FormData();
       submitData.append('fullName', formData.fullName.trim());
       submitData.append('email', formData.email.trim());
@@ -134,7 +128,7 @@ const MessageForm = () => {
 
       if (response.ok) {
         setSubmitSuccess(true);
-        // Reset form
+
         setFormData({
           fullName: '',
           email: '',
@@ -146,11 +140,10 @@ const MessageForm = () => {
           consentGiven: false
         });
         setAttachment(null);
-        // Clear file input
+
         const fileInput = document.getElementById('attachment');
         if (fileInput) fileInput.value = '';
 
-        // Scroll to success message
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
       } else {
@@ -165,7 +158,6 @@ const MessageForm = () => {
     }
   };
 
-  // Reset success message
   const resetSuccess = () => {
     setSubmitSuccess(false);
   };
@@ -195,8 +187,7 @@ const MessageForm = () => {
           )}
 
           <form onSubmit={handleSubmit} className="message-form">
-            {/* Full Name */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="fullName">
                 Full Name <span className="required">*</span>
               </label>
@@ -212,8 +203,7 @@ const MessageForm = () => {
               {errors.fullName && <span className="error-text">{errors.fullName}</span>}
             </div>
 
-            {/* Email */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="email">
                 Email Address <span className="required">*</span>
               </label>
@@ -229,8 +219,7 @@ const MessageForm = () => {
               {errors.email && <span className="error-text">{errors.email}</span>}
             </div>
 
-            {/* Organization */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="organization">Organization / Company</label>
               <input
                 type="text"
@@ -242,8 +231,7 @@ const MessageForm = () => {
               />
             </div>
 
-            {/* Phone */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="phone">Phone Number</label>
               <input
                 type="tel"
@@ -255,8 +243,7 @@ const MessageForm = () => {
               />
             </div>
 
-            {/* Purpose */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="purpose">
                 Purpose of Contact <span className="required">*</span>
               </label>
@@ -277,8 +264,7 @@ const MessageForm = () => {
               {errors.purpose && <span className="error-text">{errors.purpose}</span>}
             </div>
 
-            {/* Purpose Detail (shown only if Other is selected) */}
-            {formData.purpose === 'Other' && (
+                        {formData.purpose === 'Other' && (
               <div className="form-group">
                 <label htmlFor="purposeDetail">
                   Please Specify <span className="required">*</span>
@@ -296,8 +282,7 @@ const MessageForm = () => {
               </div>
             )}
 
-            {/* Message */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="message">
                 Message <span className="required">*</span>
               </label>
@@ -313,8 +298,7 @@ const MessageForm = () => {
               {errors.message && <span className="error-text">{errors.message}</span>}
             </div>
 
-            {/* File Attachment */}
-            <div className="form-group">
+                        <div className="form-group">
               <label htmlFor="attachment">
                 Attachment (Optional)
               </label>
@@ -334,8 +318,7 @@ const MessageForm = () => {
               )}
             </div>
 
-            {/* Consent */}
-            <div className="form-group checkbox-group">
+                        <div className="form-group checkbox-group">
               <label className="checkbox-label">
                 <input
                   type="checkbox"
@@ -351,8 +334,7 @@ const MessageForm = () => {
               {errors.consentGiven && <span className="error-text">{errors.consentGiven}</span>}
             </div>
 
-            {/* Submit Button */}
-            <div className="form-actions">
+                        <div className="form-actions">
               <button
                 type="submit"
                 className="btn-submit"

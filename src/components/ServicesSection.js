@@ -53,8 +53,7 @@ const ServicesSection = () => {
       <div className="services-gradient"></div>
 
       <div className="services-container">
-        {/* Section Header */}
-        <div className="services-header">
+                <div className="services-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">What We Offer</span>
@@ -65,8 +64,7 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        {services && services.length > 0 ? (
+                {services && services.length > 0 ? (
           <div className="services-grid">
             {services.map((service, index) => (
               <div
@@ -74,25 +72,21 @@ const ServicesSection = () => {
                 className="service-card"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Service Icon */}
-                {service.icon && (
+                                {service.icon && (
                   <div className="service-icon">
                     {service.icon}
                   </div>
                 )}
 
-                {/* Category Badge */}
-                {service.category && (
+                                {service.category && (
                   <div className="service-category">{service.category}</div>
                 )}
 
-                {/* Service Content */}
-                <div className="service-content">
+                                <div className="service-content">
                   <h3 className="service-title">{service.title}</h3>
                   <p className="service-description">{service.description}</p>
 
-                  {/* Features List */}
-                  {service.features && service.features.length > 0 && (
+                                    {service.features && service.features.length > 0 && (
                     <div className="service-features">
                       <h4 className="features-title">Key Features</h4>
                       <ul className="features-list">
@@ -114,8 +108,7 @@ const ServicesSection = () => {
                     </div>
                   )}
 
-                  {/* Learn More Link */}
-                  <a href="#contact" className="service-link">
+                                    <a href="#contact" className="service-link">
                     <span>Get Started</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                       <path

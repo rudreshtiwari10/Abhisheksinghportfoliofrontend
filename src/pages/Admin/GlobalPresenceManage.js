@@ -27,7 +27,6 @@ const GlobalPresenceManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all global presence items
   const fetchPresences = async () => {
     try {
       setLoading(true);
@@ -45,7 +44,6 @@ const GlobalPresenceManage = () => {
     fetchPresences();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -54,7 +52,6 @@ const GlobalPresenceManage = () => {
     }));
   };
 
-  // Handle partnerships array
   const addPartnership = () => {
     if (partnershipInput.trim()) {
       setFormData(prev => ({
@@ -72,13 +69,12 @@ const GlobalPresenceManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/global-presence/${editingId}`,
           formData,
@@ -86,7 +82,7 @@ const GlobalPresenceManage = () => {
         );
         alert('Global presence updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/global-presence`,
           formData,
@@ -95,7 +91,6 @@ const GlobalPresenceManage = () => {
         alert('Global presence created successfully!');
       }
 
-      // Reset form
       setFormData({
         country: '',
         region: '',
@@ -114,7 +109,6 @@ const GlobalPresenceManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (presence) => {
     setFormData({
       country: presence.country,
@@ -129,7 +123,6 @@ const GlobalPresenceManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this global presence entry?')) {
       return;
@@ -145,7 +138,6 @@ const GlobalPresenceManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({
       country: '',
@@ -161,7 +153,6 @@ const GlobalPresenceManage = () => {
     setPartnershipInput('');
   };
 
-  // Filter presences
   const filteredPresences = presences.filter(presence => {
     const searchLower = searchTerm.toLowerCase();
     return presence.country.toLowerCase().includes(searchLower) ||
@@ -181,8 +172,7 @@ const GlobalPresenceManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Global Presence' : 'Add New Global Presence'}</h2>
           <form onSubmit={handleSubmit}>
@@ -322,7 +312,6 @@ const GlobalPresenceManage = () => {
         </div>
       )}
 
-      {/* Search */}
       <div className="form-card" style={{ marginBottom: '20px' }}>
         <div className="form-group">
           <label>Search Locations</label>
@@ -335,7 +324,6 @@ const GlobalPresenceManage = () => {
         </div>
       </div>
 
-      {/* List */}
       <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>

@@ -29,7 +29,6 @@ const AboutManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch about data
   const fetchAbout = async () => {
     try {
       setLoading(true);
@@ -47,7 +46,7 @@ const AboutManage = () => {
       }
     } catch (error) {
       console.error('Failed to fetch about:', error);
-      // Don't alert if no data exists yet
+
       if (error.response?.status !== 404) {
         alert('Failed to fetch about data');
       }
@@ -60,7 +59,6 @@ const AboutManage = () => {
     fetchAbout();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -69,7 +67,6 @@ const AboutManage = () => {
     }));
   };
 
-  // Handle highlights array
   const addHighlight = () => {
     if (highlightInput.trim()) {
       setFormData(prev => ({
@@ -87,7 +84,6 @@ const AboutManage = () => {
     }));
   };
 
-  // Handle education array
   const handleEducationChange = (e) => {
     const { name, value } = e.target;
     setEducationForm(prev => ({
@@ -116,13 +112,12 @@ const AboutManage = () => {
     }));
   };
 
-  // Handle save (create or update)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (about) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/about/${about._id}`,
           formData,
@@ -130,7 +125,7 @@ const AboutManage = () => {
         );
         alert('About section updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/about`,
           formData,
@@ -190,8 +185,7 @@ const AboutManage = () => {
               </small>
             </div>
 
-            {/* Education Section */}
-            <div className="form-group">
+                        <div className="form-group">
               <label>Education</label>
               <div style={{ marginBottom: '12px' }}>
                 {formData.education.map((edu, index) => (
@@ -307,8 +301,7 @@ const AboutManage = () => {
               )}
             </div>
 
-            {/* Highlights Section */}
-            <div className="form-group">
+                        <div className="form-group">
               <label>Highlights</label>
               <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                 <input
@@ -380,8 +373,7 @@ const AboutManage = () => {
         </div>
       )}
 
-      {/* Preview */}
-      {about && (
+            {about && (
         <div className="content-list" style={{ marginTop: '20px' }}>
           <h2 style={{ marginBottom: '16px' }}>Preview</h2>
           <div style={{ background: 'white', padding: '20px', borderRadius: '12px' }}>

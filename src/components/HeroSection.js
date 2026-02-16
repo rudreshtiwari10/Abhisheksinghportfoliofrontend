@@ -23,13 +23,11 @@ const HeroSection = () => {
 
   return (
     <div className="ceo-hero-section">
-      {/* Subtle Background Pattern */}
-      <div className="hero-pattern"></div>
+            <div className="hero-pattern"></div>
       <div className="hero-gradient"></div>
 
       <div className={`hero-container ${isVisible ? 'visible' : ''}`}>
-        {/* Left Content - Minimal Information */}
-        <div className="hero-left">
+                <div className="hero-left">
           <div className="hero-label">
             <span className="label-line"></span>
             <span className="label-text">Chief Executive Officer</span>
@@ -45,16 +43,14 @@ const HeroSection = () => {
             technology excellence, and visionary leadership across multiple industries.
           </p>
 
-          {/* Expertise Pills */}
-          <div className="expertise-pills">
+                    <div className="expertise-pills">
             <div className="pill">Cybersecurity</div>
             <div className="pill">EdTech</div>
             <div className="pill">Strategic Consulting</div>
             <div className="pill">Global Expansion</div>
           </div>
 
-          {/* Key Metrics */}
-          <div className="hero-metrics">
+                    <div className="hero-metrics">
             <div className="metric">
               <div className="metric-value">15+</div>
               <div className="metric-label">Years of Excellence</div>
@@ -71,8 +67,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hero-actions">
+                    <div className="hero-actions">
             <a href="#contact" className="cta-primary">
               <span>Schedule a Consultation</span>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -84,9 +79,8 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* Minimal Social Links */}
-          <div className="hero-social">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <div className="hero-social">
+            <a href="https://www.linkedin.com/in/abhisheklifecoach/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
               </svg>
@@ -105,16 +99,14 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Image - CEO Portrait */}
-        <div className="hero-right">
+                <div className="hero-right">
           <div
             className="image-frame"
             style={{
               transform: `translate(${mousePosition.x * 0.3}px, ${mousePosition.y * 0.3}px)`
             }}
           >
-            {/* CEO Image */}
-            <div className="image-container">
+                        <div className="image-container">
               <img
                 src={`${API_URL}/uploads/abhishek-ceo.png`}
                 alt="Thakur Abhishek Singh - CEO"
@@ -123,8 +115,7 @@ const HeroSection = () => {
               <div className="image-overlay"></div>
             </div>
 
-            {/* Design Component - Center Right to Center Bottom */}
-            <svg className="flow-design" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="flow-design" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M 180 140 Q 150 160, 120 180 Q 90 200, 80 240"
                 stroke="url(#flowGradient)"
@@ -146,8 +137,7 @@ const HeroSection = () => {
               </defs>
             </svg>
 
-            {/* Subtle Badge */}
-            <div className="achievement-badge">
+                        <div className="achievement-badge">
               <div className="badge-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
@@ -160,14 +150,12 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Minimal Accent Elements */}
-          <div className="accent-dot accent-dot-1"></div>
+                    <div className="accent-dot accent-dot-1"></div>
           <div className="accent-dot accent-dot-2"></div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="scroll-hint">
+            <div className="scroll-hint">
         <div className="scroll-mouse">
           <div className="scroll-wheel"></div>
         </div>

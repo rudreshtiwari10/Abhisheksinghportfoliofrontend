@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import DynamicIslandNav from '../components/DynamicIslandNav';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
@@ -11,6 +12,24 @@ import ServicesSection from '../components/ServicesSection';
 import ContactSection from '../components/ContactSection';
 
 const HomePage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      setTimeout(() => {
+        const element = document.getElementById(location.state.scrollTo);
+        if (element) {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <div className="home-page">
       <DynamicIslandNav />

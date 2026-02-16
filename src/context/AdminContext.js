@@ -18,7 +18,6 @@ export const AdminProvider = ({ children }) => {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4006';
 
-  // Verify token on mount
   useEffect(() => {
     const verifyToken = async () => {
       if (token) {
@@ -45,7 +44,6 @@ export const AdminProvider = ({ children }) => {
     verifyToken();
   }, [token, API_URL]);
 
-  // Login function
   const login = async (username, password) => {
     try {
       const response = await axios.post(`${API_URL}/api/admin/auth/login`, {
@@ -56,11 +54,9 @@ export const AdminProvider = ({ children }) => {
       if (response.data.success) {
         const { token: newToken, admin: adminData } = response.data;
 
-        // Save to localStorage
         localStorage.setItem('adminToken', newToken);
         localStorage.setItem('adminData', JSON.stringify(adminData));
 
-        // Update state
         setToken(newToken);
         setAdmin(adminData);
 
@@ -75,7 +71,6 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
-  // Logout function
   const logout = () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminData');
@@ -83,7 +78,6 @@ export const AdminProvider = ({ children }) => {
     setAdmin(null);
   };
 
-  // Check if admin is authenticated
   const isAuthenticated = () => {
     return !!token && !!admin;
   };

@@ -5,7 +5,6 @@ import { useAdmin } from '../../context/AdminContext';
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAdmin();
 
-  // Show loading while checking authentication
   if (loading) {
     return (
       <div style={{
@@ -21,12 +20,10 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  // Redirect to login if not authenticated
   if (!isAuthenticated()) {
     return <Navigate to="/admin-login" replace />;
   }
 
-  // Render children if authenticated
   return children;
 };
 

@@ -115,8 +115,7 @@ const ContactSection = () => {
       <div className="contact-gradient"></div>
 
       <div className="contact-container">
-        {/* Section Header */}
-        <div className="contact-header">
+                <div className="contact-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Get In Touch</span>
@@ -127,9 +126,7 @@ const ContactSection = () => {
           </p>
         </div>
 
-        {/* Contact Content Grid */}
         <div className="contact-content">
-          {/* Left: CTA */}
           <div className="contact-cta">
             <h3 className="cta-title">Ready to Start?</h3>
             <p className="cta-description">
@@ -137,7 +134,6 @@ const ContactSection = () => {
               we're here to help you achieve extraordinary results.
             </p>
 
-            {/* Primary Email Buttons */}
             <div className="cta-buttons">
               <a
                 href="mailto:operations@countryedu.com"
@@ -161,7 +157,6 @@ const ContactSection = () => {
               </a>
             </div>
 
-            {/* Response Time */}
             <div className="response-time">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
@@ -171,7 +166,6 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Right: Contact Info */}
           <div className="contact-info-grid">
             {contactInfo.map((info, index) => (
               <div
@@ -195,7 +189,6 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Social Links */}
         <div className="contact-social">
           <h4 className="social-title">Connect With Us</h4>
           <div className="social-links">
@@ -216,7 +209,6 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Footer Note */}
         <div className="contact-footer">
           <p className="footer-note">
             Building the future of business, one strategic partnership at a time.

@@ -1,4 +1,3 @@
-/* Global Presence Section */
 .global-presence-section {
   position: relative;
   min-height: 100vh;
@@ -18,7 +17,6 @@
   transform: translateY(0);
 }
 
-/* Background Pattern */
 .global-presence-pattern {
   position: absolute;
   top: 0;
@@ -41,7 +39,6 @@
   z-index: 1;
 }
 
-/* Container */
 .global-presence-container {
   position: relative;
   z-index: 2;
@@ -50,7 +47,6 @@
   margin: 0 auto;
 }
 
-/* Section Header */
 .global-presence-header {
   text-align: center;
   margin-bottom: 80px;
@@ -99,7 +95,6 @@
   line-height: 1.6;
 }
 
-/* Countries Grid */
 .countries-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -107,7 +102,6 @@
   margin-top: 60px;
 }
 
-/* Country Card */
 .country-card {
   position: relative;
   padding: 40px 32px;
@@ -144,7 +138,6 @@
   box-shadow: 0 20px 40px rgba(197, 160, 101, 0.15);
 }
 
-/* Country Flag */
 .country-flag {
   font-size: 64px;
   margin-bottom: 20px;
@@ -156,7 +149,6 @@
   transform: scale(1.1);
 }
 
-/* Country Info */
 .country-info {
   display: flex;
   flex-direction: column;
@@ -196,7 +188,6 @@
   margin: 0;
 }
 
-/* Partnerships */
 .country-partnerships {
   display: flex;
   flex-direction: column;
@@ -236,7 +227,6 @@
   color: #c5a065;
 }
 
-/* Shine Effect */
 .country-shine {
   position: absolute;
   top: -50%;
@@ -259,7 +249,6 @@
   animation: shine 1.5s ease-in-out infinite;
 }
 
-/* Global Stats */
 .global-stats {
   display: flex;
   align-items: center;
@@ -301,7 +290,6 @@
   background: linear-gradient(180deg, transparent 0%, rgba(197, 160, 101, 0.3) 50%, transparent 100%);
 }
 
-/* Animations */
 @keyframes cardFadeIn {
   to {
     opacity: 1;
@@ -329,7 +317,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .section-title {
     font-size: 48px;

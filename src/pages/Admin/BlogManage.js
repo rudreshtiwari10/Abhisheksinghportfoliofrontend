@@ -18,7 +18,6 @@ const BlogManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all blogs
   const fetchBlogs = async () => {
     try {
       setLoading(true);
@@ -36,7 +35,6 @@ const BlogManage = () => {
     fetchBlogs();
   }, []);
 
-  // Filter blogs based on status
   const filteredBlogs = blogs.filter(blog => {
     if (filter === 'all') return true;
     if (filter === 'published') return blog.status === 'published' && blog.publishedAt && new Date(blog.publishedAt) <= new Date();
@@ -45,7 +43,6 @@ const BlogManage = () => {
     return true;
   });
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
       return;
@@ -61,7 +58,6 @@ const BlogManage = () => {
     }
   };
 
-  // Format date
   const formatDate = (dateString) => {
     if (!dateString) return 'Not set';
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -73,7 +69,6 @@ const BlogManage = () => {
     });
   };
 
-  // Get status badge
   const getStatusBadge = (blog) => {
     if (blog.status === 'draft') {
       return <span className="badge badge-draft">Draft</span>;
@@ -102,8 +97,7 @@ const BlogManage = () => {
         </button>
       </div>
 
-      {/* Filter Tabs */}
-      <div className="filter-tabs">
+            <div className="filter-tabs">
         <button
           className={`tab ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
@@ -130,8 +124,7 @@ const BlogManage = () => {
         </button>
       </div>
 
-      {/* Blog List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : filteredBlogs.length === 0 ? (

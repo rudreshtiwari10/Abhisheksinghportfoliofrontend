@@ -53,8 +53,7 @@ const GlobalPresenceSection = () => {
       <div className="global-presence-gradient"></div>
 
       <div className="global-presence-container">
-        {/* Section Header */}
-        <div className="global-presence-header">
+                <div className="global-presence-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Global Reach</span>
@@ -65,8 +64,7 @@ const GlobalPresenceSection = () => {
           </p>
         </div>
 
-        {/* Countries Grid */}
-        {globalPresence && globalPresence.length > 0 ? (
+                {globalPresence && globalPresence.length > 0 ? (
           <>
             <div className="countries-grid">
               {globalPresence.map((country, index) => (
@@ -75,13 +73,11 @@ const GlobalPresenceSection = () => {
                   className="country-card"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Flag Emoji */}
-                  {country.flagEmoji && (
+                                    {country.flagEmoji && (
                     <div className="country-flag">{country.flagEmoji}</div>
                   )}
 
-                  {/* Country Info */}
-                  <div className="country-info">
+                                    <div className="country-info">
                     <h3 className="country-name">{country.country}</h3>
 
                     {country.region && (
@@ -104,8 +100,7 @@ const GlobalPresenceSection = () => {
                       <p className="country-description">{country.description}</p>
                     )}
 
-                    {/* Partnerships */}
-                    {country.partnerships && country.partnerships.length > 0 && (
+                                        {country.partnerships && country.partnerships.length > 0 && (
                       <div className="country-partnerships">
                         <h4 className="partnerships-title">Key Partnerships</h4>
                         <ul className="partnerships-list">
@@ -133,8 +128,7 @@ const GlobalPresenceSection = () => {
               ))}
             </div>
 
-            {/* Global Stats */}
-            <div className="global-stats">
+                        <div className="global-stats">
               <div className="stat-item">
                 <div className="stat-value">{globalPresence.length}+</div>
                 <div className="stat-label">Countries</div>

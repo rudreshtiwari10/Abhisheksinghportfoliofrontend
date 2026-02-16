@@ -10,22 +10,18 @@ const MessagesManage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Filters
   const [statusFilter, setStatusFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('-createdAt');
 
-  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Fetch messages
   const fetchMessages = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('adminToken');
 
-      // Build query params
       const params = new URLSearchParams({
         page: currentPage,
         limit: 20,
@@ -63,7 +59,6 @@ const MessagesManage = () => {
     }
   };
 
-  // Fetch statistics
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem('adminToken');
@@ -89,14 +84,12 @@ const MessagesManage = () => {
     fetchStats();
   }, [currentPage, statusFilter, sortBy]);
 
-  // Handle search
   const handleSearch = (e) => {
     e.preventDefault();
     setCurrentPage(1);
     fetchMessages();
   };
 
-  // Delete message
   const handleDelete = async (id, fullName) => {
     if (!window.confirm(`Are you sure you want to delete the message from ${fullName}?`)) {
       return;
@@ -126,7 +119,6 @@ const MessagesManage = () => {
     }
   };
 
-  // Format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', {
@@ -145,8 +137,7 @@ const MessagesManage = () => {
         <p>Manage messages from visitors</p>
       </div>
 
-      {/* Statistics Cards */}
-      <div className="stats-grid">
+            <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-label">Total Messages</div>
           <div className="stat-value">{stats.total}</div>
@@ -165,8 +156,7 @@ const MessagesManage = () => {
         </div>
       </div>
 
-      {/* Filters and Search */}
-      <div className="filters-section">
+            <div className="filters-section">
         <form onSubmit={handleSearch} className="search-form">
           <input
             type="text"
@@ -206,15 +196,13 @@ const MessagesManage = () => {
         </div>
       </div>
 
-      {/* Error Message */}
-      {error && (
+            {error && (
         <div className="error-message">
           Error: {error}
         </div>
       )}
 
-      {/* Messages List */}
-      {loading ? (
+            {loading ? (
         <div className="loading">Loading messages...</div>
       ) : messages.length === 0 ? (
         <div className="no-messages">
@@ -287,8 +275,7 @@ const MessagesManage = () => {
             ))}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
+                    {totalPages > 1 && (
             <div className="pagination">
               <button
                 onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}

@@ -4,7 +4,6 @@
   background: #f5f7fa;
 }
 
-/* Sidebar */
 .admin-sidebar {
   width: 280px;
   background: #2c3e50;
@@ -33,7 +32,6 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Navigation */
 .admin-nav {
   flex: 1;
   padding: 20px 0;
@@ -75,7 +73,6 @@
   font-size: 20px;
 }
 
-/* Sidebar Footer */
 .admin-sidebar-footer {
   padding: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -115,7 +112,12 @@
   color: white;
 }
 
-/* Main Content */
+.admin-dashboard input,
+.admin-dashboard textarea,
+.admin-dashboard select {
+  color: #333 !important;
+}
+
 .admin-main {
   flex: 1;
   margin-left: 280px;
@@ -123,7 +125,6 @@
   min-height: 100vh;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .admin-sidebar {
     width: 100%;

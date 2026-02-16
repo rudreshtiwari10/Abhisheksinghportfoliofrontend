@@ -53,8 +53,7 @@ const LeadershipPhilosophySection = () => {
       <div className="philosophy-gradient"></div>
 
       <div className="philosophy-container">
-        {/* Section Header */}
-        <div className="philosophy-header">
+                <div className="philosophy-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Principles & Values</span>
@@ -65,8 +64,7 @@ const LeadershipPhilosophySection = () => {
           </p>
         </div>
 
-        {/* Philosophy Grid */}
-        {philosophy && philosophy.length > 0 ? (
+                {philosophy && philosophy.length > 0 ? (
           <>
             <div className="philosophy-grid">
               {philosophy.map((item, index) => (
@@ -75,29 +73,25 @@ const LeadershipPhilosophySection = () => {
                   className="philosophy-card"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Icon */}
-                  {item.icon && (
+                                    {item.icon && (
                     <div className="philosophy-icon">
                       {item.icon}
                     </div>
                   )}
 
-                  {/* Content */}
-                  <div className="philosophy-content">
+                                    <div className="philosophy-content">
                     <h3 className="philosophy-title">{item.title}</h3>
                     <p className="philosophy-description">{item.description}</p>
                   </div>
 
-                  {/* Number Badge */}
-                  <div className="philosophy-number">{String(index + 1).padStart(2, '0')}</div>
+                                    <div className="philosophy-number">{String(index + 1).padStart(2, '0')}</div>
 
                   <div className="philosophy-shine"></div>
                 </div>
               ))}
             </div>
 
-            {/* Quote Section */}
-            <div className="philosophy-quote">
+                        <div className="philosophy-quote">
               <svg className="quote-icon" width="48" height="48" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M3 21C3 21 9 15 9 9C9 6 6 3 6 3M15 21C15 21 21 15 21 9C21 6 18 3 18 3"

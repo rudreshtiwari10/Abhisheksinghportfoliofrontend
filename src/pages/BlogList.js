@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Navigation from '../components/Navigation';
+import DynamicIslandNav from '../components/DynamicIslandNav';
 import './BlogList.css';
 
 const BlogList = () => {
@@ -11,10 +11,14 @@ const BlogList = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isVisible, setIsVisible] = useState(false);
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4006';
 
-  // Fetch published blogs
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100);
+  }, []);
+
   useEffect(() => {
     fetchBlogs();
     fetchCategories();
@@ -42,7 +46,6 @@ const BlogList = () => {
     }
   };
 
-  // Filter blogs by category and search
   useEffect(() => {
     let result = blogs;
 
@@ -70,16 +73,21 @@ const BlogList = () => {
 
   return (
     <>
-      <Navigation />
-      <div className="blog-list-page">
-        {/* Header */}
-        <header className="blog-header">
-          <h1>Blog</h1>
-          <p>Insights, thoughts, and updates</p>
+      <DynamicIslandNav />
+      <div className={`blog-list-page ${isVisible ? 'visible' : ''}`}>
+                <div className="blog-pattern" />
+        <div className="blog-gradient" />
+                <header className="blog-header">
+          <div className="section-label">
+            <span className="label-line" />
+            <span className="label-text">INSIGHTS</span>
+            <span className="label-line" />
+          </div>
+          <h1 className="section-title">Thought Leadership</h1>
+          <p className="section-subtitle">Insights, perspectives, and industry expertise from a visionary CEO</p>
         </header>
 
-        {/* Search and Filter */}
-        <div className="blog-controls">
+                <div className="blog-controls">
           <div className="search-box">
             <input
               type="text"
@@ -102,8 +110,7 @@ const BlogList = () => {
           </div>
         </div>
 
-        {/* Blog Grid */}
-        {loading ? (
+                {loading ? (
           <div className="loading">Loading articles...</div>
         ) : filteredBlogs.length === 0 ? (
           <div className="empty-state">

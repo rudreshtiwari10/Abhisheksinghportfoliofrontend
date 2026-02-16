@@ -48,12 +48,10 @@ const AchievementsSection = () => {
     }
   };
 
-  // Get unique categories
   const categories = achievements && achievements.length > 0
     ? ['All', ...new Set(achievements.map(a => a.category).filter(Boolean))]
     : [];
 
-  // Filter achievements by category
   const filteredAchievements = selectedCategory === 'All'
     ? achievements
     : achievements.filter(a => a.category === selectedCategory);
@@ -64,8 +62,7 @@ const AchievementsSection = () => {
       <div className="achievements-gradient"></div>
 
       <div className="achievements-container">
-        {/* Section Header */}
-        <div className="achievements-header">
+                <div className="achievements-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Milestones & Recognition</span>
@@ -76,11 +73,9 @@ const AchievementsSection = () => {
           </p>
         </div>
 
-        {/* Content Area */}
-        {achievements && achievements.length > 0 ? (
+                {achievements && achievements.length > 0 ? (
           <>
-            {/* Category Filter */}
-            {categories.length > 1 && (
+                        {categories.length > 1 && (
               <div className="category-filter">
                 {categories.map((category) => (
                   <button
@@ -94,21 +89,17 @@ const AchievementsSection = () => {
               </div>
             )}
 
-            {/* Achievements Timeline */}
-            <div className="achievements-timeline">
+                        <div className="achievements-timeline">
               {filteredAchievements.map((achievement, index) => (
                 <div
                   key={achievement._id}
                   className="achievement-item"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* Timeline Dot */}
-                  <div className="timeline-dot"></div>
+                                    <div className="timeline-dot"></div>
 
-                  {/* Achievement Card */}
-                  <div className="achievement-card">
-                    {/* Year Badge */}
-                    {achievement.year && (
+                                    <div className="achievement-card">
+                                        {achievement.year && (
                       <div className="achievement-year">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                           <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
@@ -118,17 +109,14 @@ const AchievementsSection = () => {
                       </div>
                     )}
 
-                    {/* Category Badge */}
-                    {achievement.category && (
+                                        {achievement.category && (
                       <div className="achievement-category">{achievement.category}</div>
                     )}
 
-                    {/* Content */}
-                    <h3 className="achievement-title">{achievement.title}</h3>
+                                        <h3 className="achievement-title">{achievement.title}</h3>
                     <p className="achievement-description">{achievement.description}</p>
 
-                    {/* Icon */}
-                    <div className="achievement-icon">
+                                        <div className="achievement-icon">
                       <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
                         <path
                           d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z"

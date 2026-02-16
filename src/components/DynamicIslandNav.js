@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './DynamicIslandNav.css';
 
 const menuItems = [
@@ -13,24 +14,32 @@ const menuItems = [
 ];
 
 const connectOptions = [
-  { name: 'LinkedIn', icon: '💼', url: 'https://linkedin.com' },
+  { name: 'LinkedIn', icon: '💼', url: 'https://www.linkedin.com/in/abhisheklifecoach/' },
   { name: 'Email', icon: '📧', url: 'mailto:abhishek.ceo@countryedu.com' },
   { name: 'Twitter', icon: '𝕏', url: 'https://twitter.com' },
   { name: 'Schedule', icon: '📅', url: '#contact' }
 ];
 
 const DynamicIslandNav = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
   const [isConnectHovered, setIsConnectHovered] = useState(false);
   const [isConnectExpanded, setIsConnectExpanded] = useState(false);
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
+
+    if (!isHomePage) {
+      setIsVisible(true);
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsVisible(scrollPosition > 100);
 
-      // Detect current section
       const sections = menuItems.map(item => item.id);
       for (let section of sections) {
         const element = document.getElementById(section);
@@ -46,23 +55,35 @@ const DynamicIslandNav = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  }, [isHomePage]);
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      });
+    if (!isHomePage) {
+
+      navigate('/', { state: { scrollTo: id } });
+    } else {
+
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleLogoClick = () => {
+    if (isHomePage) {
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+
+      navigate('/');
+    }
   };
 
   return (
@@ -80,8 +101,7 @@ const DynamicIslandNav = () => {
             duration: 0.6
           }}
         >
-          {/* Main Navigation Island */}
-          <motion.nav
+                    <motion.nav
             animate={{
               width: isConnectHovered ? '20%' : '68%'
             }}
@@ -93,15 +113,14 @@ const DynamicIslandNav = () => {
             className="main-island"
           >
             <div className="island-content">
-              {/* Glow Effect */}
-              <div className="island-glow" />
+                            <div className="island-glow" />
 
-              {/* Logo/Profile Section */}
-              <motion.button
-                onClick={scrollToTop}
+                            <motion.button
+                onClick={handleLogoClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="island-logo"
+                title={isHomePage ? 'Scroll to top' : 'Back to homepage'}
               >
                 <div className="logo-image">
                   <img
@@ -125,8 +144,7 @@ const DynamicIslandNav = () => {
                 </AnimatePresence>
               </motion.button>
 
-              {/* Divider */}
-              <AnimatePresence>
+                            <AnimatePresence>
                 {!isConnectHovered && (
                   <motion.div
                     initial={{ opacity: 0, width: 0 }}
@@ -138,8 +156,7 @@ const DynamicIslandNav = () => {
                 )}
               </AnimatePresence>
 
-              {/* Navigation Menu */}
-              <AnimatePresence>
+                            <AnimatePresence>
                 {!isConnectHovered && (
                   <motion.div
                     key="menu"
@@ -177,8 +194,7 @@ const DynamicIslandNav = () => {
             </div>
           </motion.nav>
 
-          {/* Connect Island */}
-          <motion.div
+                    <motion.div
             animate={{
               width: isConnectHovered ? '66%' : '18%'
             }}
@@ -198,11 +214,9 @@ const DynamicIslandNav = () => {
             }}
           >
             <div className="island-content">
-              {/* Glow Effect */}
-              <div className="island-glow" />
+                            <div className="island-glow" />
 
-              {/* Connect Button */}
-              <div className="connect-content">
+                            <div className="connect-content">
                 <motion.div
                   className="connect-icon"
                   animate={{ rotate: isConnectExpanded ? 90 : 0 }}

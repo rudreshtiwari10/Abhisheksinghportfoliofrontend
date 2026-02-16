@@ -53,8 +53,7 @@ const ExpertiseSection = () => {
       <div className="expertise-gradient"></div>
 
       <div className="expertise-container">
-        {/* Section Header */}
-        <div className="expertise-header">
+                <div className="expertise-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Core Expertise</span>
@@ -65,8 +64,7 @@ const ExpertiseSection = () => {
           </p>
         </div>
 
-        {/* Expertise Grid */}
-        {expertises && expertises.length > 0 ? (
+                {expertises && expertises.length > 0 ? (
           <div className="expertise-grid">
             {expertises.map((expertise, index) => (
               <div

@@ -12,16 +12,13 @@ const MessageDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Response form
   const [showResponseForm, setShowResponseForm] = useState(false);
   const [responseText, setResponseText] = useState('');
   const [sendingResponse, setSendingResponse] = useState(false);
 
-  // Internal notes
   const [notes, setNotes] = useState('');
   const [savingNotes, setSavingNotes] = useState(false);
 
-  // Fetch message
   const fetchMessage = async () => {
     try {
       setLoading(true);
@@ -41,7 +38,6 @@ const MessageDetail = () => {
       setMessage(data.data);
       setNotes(data.data.internalNotes || '');
 
-      // If already responded, populate response text
       if (data.data.adminResponse) {
         setResponseText(data.data.adminResponse);
       }
@@ -60,7 +56,6 @@ const MessageDetail = () => {
     fetchMessage();
   }, [id]);
 
-  // Send response
   const handleSendResponse = async (e) => {
     e.preventDefault();
 
@@ -89,7 +84,7 @@ const MessageDetail = () => {
       if (response.ok) {
         alert('Response sent successfully!');
         setShowResponseForm(false);
-        fetchMessage(); // Refresh data
+        fetchMessage();
       } else {
         const data = await response.json();
         alert(data.message || 'Failed to send response');
@@ -103,7 +98,6 @@ const MessageDetail = () => {
     }
   };
 
-  // Update status
   const handleUpdateStatus = async (newStatus) => {
     try {
       const token = localStorage.getItem('adminToken');
@@ -130,7 +124,6 @@ const MessageDetail = () => {
     }
   };
 
-  // Save notes
   const handleSaveNotes = async () => {
     try {
       setSavingNotes(true);
@@ -160,13 +153,11 @@ const MessageDetail = () => {
     }
   };
 
-  // Download attachment
   const handleDownloadAttachment = () => {
     const token = localStorage.getItem('adminToken');
     window.open(`${API_URL}/api/messages/admin/${id}/download?token=${token}`, '_blank');
   };
 
-  // Delete message
   const handleDelete = async () => {
     if (!window.confirm('Are you sure you want to delete this message? This action cannot be undone.')) {
       return;
@@ -196,7 +187,6 @@ const MessageDetail = () => {
     }
   };
 
-  // Format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', {
@@ -232,8 +222,7 @@ const MessageDetail = () => {
 
   return (
     <div className="message-detail">
-      {/* Header */}
-      <div className="detail-header">
+            <div className="detail-header">
         <Link to="/admin/messages" className="back-link">← Back to Messages</Link>
         <div className="header-actions">
           <select
@@ -249,10 +238,8 @@ const MessageDetail = () => {
         </div>
       </div>
 
-      {/* Message Content */}
-      <div className="detail-content">
-        {/* Sender Info Card */}
-        <div className="info-card">
+            <div className="detail-content">
+                <div className="info-card">
           <h2>
             {message.fullName}
             {!message.isRead && <span className="unread-badge">New</span>}
@@ -308,16 +295,14 @@ const MessageDetail = () => {
           </div>
         </div>
 
-        {/* Message Content Card */}
-        <div className="message-card">
+                <div className="message-card">
           <h3>Message</h3>
           <div className="message-text">
             {message.message}
           </div>
         </div>
 
-        {/* Attachment Card */}
-        {message.attachment && (
+                {message.attachment && (
           <div className="attachment-card">
             <h3>Attachment</h3>
             <div className="attachment-info">
@@ -341,8 +326,7 @@ const MessageDetail = () => {
           </div>
         )}
 
-        {/* Response Section */}
-        <div className="response-section">
+                <div className="response-section">
           <div className="section-header">
             <h3>Response</h3>
             {!showResponseForm && !message.adminResponse && (
@@ -406,8 +390,7 @@ const MessageDetail = () => {
           )}
         </div>
 
-        {/* Internal Notes Section */}
-        <div className="notes-section">
+                <div className="notes-section">
           <h3>Internal Notes</h3>
           <p className="notes-help">These notes are private and not visible to the sender.</p>
           <textarea

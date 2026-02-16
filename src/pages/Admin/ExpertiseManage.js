@@ -23,7 +23,6 @@ const ExpertiseManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all expertises
   const fetchExpertises = async () => {
     try {
       setLoading(true);
@@ -41,7 +40,6 @@ const ExpertiseManage = () => {
     fetchExpertises();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -50,13 +48,12 @@ const ExpertiseManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/expertise/${editingId}`,
           formData,
@@ -64,7 +61,7 @@ const ExpertiseManage = () => {
         );
         alert('Expertise updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/expertise`,
           formData,
@@ -73,7 +70,6 @@ const ExpertiseManage = () => {
         alert('Expertise created successfully!');
       }
 
-      // Reset form
       setFormData({ title: '', description: '', icon: '', order: 0, isActive: true });
       setEditingId(null);
       setShowForm(false);
@@ -84,7 +80,6 @@ const ExpertiseManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (expertise) => {
     setFormData({
       title: expertise.title,
@@ -97,7 +92,6 @@ const ExpertiseManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this expertise?')) {
       return;
@@ -113,7 +107,6 @@ const ExpertiseManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({ title: '', description: '', icon: '', order: 0, isActive: true });
     setEditingId(null);
@@ -132,8 +125,7 @@ const ExpertiseManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Expertise' : 'Add New Expertise'}</h2>
           <form onSubmit={handleSubmit}>
@@ -209,8 +201,7 @@ const ExpertiseManage = () => {
         </div>
       )}
 
-      {/* List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : expertises.length === 0 ? (

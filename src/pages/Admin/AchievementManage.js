@@ -27,7 +27,6 @@ const AchievementManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all achievements
   const fetchAchievements = async () => {
     try {
       setLoading(true);
@@ -45,7 +44,6 @@ const AchievementManage = () => {
     fetchAchievements();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -54,13 +52,12 @@ const AchievementManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/achievement/${editingId}`,
           formData,
@@ -68,7 +65,7 @@ const AchievementManage = () => {
         );
         alert('Achievement updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/achievement`,
           formData,
@@ -77,7 +74,6 @@ const AchievementManage = () => {
         alert('Achievement created successfully!');
       }
 
-      // Reset form
       setFormData({
         title: '',
         description: '',
@@ -95,7 +91,6 @@ const AchievementManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (achievement) => {
     setFormData({
       title: achievement.title,
@@ -109,7 +104,6 @@ const AchievementManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this achievement?')) {
       return;
@@ -125,7 +119,6 @@ const AchievementManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({
       title: '',
@@ -139,7 +132,6 @@ const AchievementManage = () => {
     setShowForm(false);
   };
 
-  // Filter achievements
   const filteredAchievements = achievements.filter(achievement => {
     const searchLower = searchTerm.toLowerCase();
     const matchesSearch = achievement.title.toLowerCase().includes(searchLower) ||
@@ -149,11 +141,9 @@ const AchievementManage = () => {
     return matchesSearch && matchesCategory && matchesYear;
   });
 
-  // Get unique categories and years
   const categories = [...new Set(achievements.map(a => a.category).filter(Boolean))];
   const years = [...new Set(achievements.map(a => a.year).filter(Boolean))].sort((a, b) => b - a);
 
-  // Category badge colors
   const getCategoryColor = (category) => {
     const colors = {
       'Award': '#f39c12',
@@ -178,8 +168,7 @@ const AchievementManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Achievement' : 'Add New Achievement'}</h2>
           <form onSubmit={handleSubmit}>
@@ -279,8 +268,7 @@ const AchievementManage = () => {
         </div>
       )}
 
-      {/* Search and Filter */}
-      <div className="form-card" style={{ marginBottom: '20px' }}>
+            <div className="form-card" style={{ marginBottom: '20px' }}>
         <div className="form-row">
           <div className="form-group">
             <label>Search Achievements</label>
@@ -314,8 +302,7 @@ const AchievementManage = () => {
         </div>
       </div>
 
-      {/* List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : filteredAchievements.length === 0 ? (

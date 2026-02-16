@@ -26,7 +26,6 @@ const BlogDetail = () => {
       const blogData = response.data.data;
       setBlog(blogData);
 
-      // Fetch related blogs (same category)
       if (blogData.categories && blogData.categories.length > 0) {
         const relatedResponse = await axios.get(
           `${API_URL}/api/blog/public?category=${blogData.categories[0]}`
@@ -76,8 +75,7 @@ const BlogDetail = () => {
     <>
       <Navigation />
       <div className="blog-detail-page">
-        {/* SEO Meta Tags */}
-        <Helmet>
+                <Helmet>
           <title>{blog.seo?.metaTitle || blog.title}</title>
           <meta name="description" content={blog.seo?.metaDescription || blog.excerpt} />
           {blog.seo?.keywords && blog.seo.keywords.length > 0 && (
@@ -91,8 +89,7 @@ const BlogDetail = () => {
           <meta property="og:type" content="article" />
         </Helmet>
 
-        {/* Article Header */}
-        <article className="blog-article">
+                <article className="blog-article">
           <header className="article-header">
             {blog.categories && blog.categories.length > 0 && (
               <div className="article-categories">
@@ -121,14 +118,12 @@ const BlogDetail = () => {
             )}
           </header>
 
-          {/* Article Content */}
-          <div
+                    <div
             className="article-content"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
 
-          {/* Embedded Videos */}
-          {blog.videos && blog.videos.length > 0 && (
+                    {blog.videos && blog.videos.length > 0 && (
             <div className="article-videos">
               <h3>Videos</h3>
               {blog.videos.map((video, idx) => (
@@ -141,8 +136,7 @@ const BlogDetail = () => {
             </div>
           )}
 
-          {/* Tags */}
-          {blog.tags && blog.tags.length > 0 && (
+                    {blog.tags && blog.tags.length > 0 && (
             <div className="article-tags">
               <strong>Tags:</strong>
               {blog.tags.map((tag, idx) => (
@@ -151,16 +145,14 @@ const BlogDetail = () => {
             </div>
           )}
 
-          {/* Back Button */}
-          <div className="article-actions">
+                    <div className="article-actions">
             <button className="btn-back" onClick={() => navigate('/blog')}>
               ← Back to Blog
             </button>
           </div>
         </article>
 
-        {/* Related Articles */}
-        {relatedBlogs.length > 0 && (
+                {relatedBlogs.length > 0 && (
           <section className="related-articles">
             <h2>Related Articles</h2>
             <div className="related-grid">

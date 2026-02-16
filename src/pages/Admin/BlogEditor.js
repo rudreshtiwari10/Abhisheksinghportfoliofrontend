@@ -36,7 +36,6 @@ const BlogEditor = () => {
   const token = localStorage.getItem('adminToken');
   const headers = { 'Authorization': `Bearer ${token}` };
 
-  // Fetch blog if editing
   useEffect(() => {
     if (isEditing) {
       fetchBlog();
@@ -73,7 +72,6 @@ const BlogEditor = () => {
     }
   };
 
-  // Handle form changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -82,12 +80,10 @@ const BlogEditor = () => {
     }));
   };
 
-  // Handle content change (ReactQuill)
   const handleContentChange = (value) => {
     setFormData(prev => ({ ...prev, content: value }));
   };
 
-  // Auto-generate slug from title
   const generateSlug = () => {
     const slug = formData.title
       .toLowerCase()
@@ -96,7 +92,6 @@ const BlogEditor = () => {
     setFormData(prev => ({ ...prev, slug }));
   };
 
-  // Handle image upload
   const handleImageUpload = async (file) => {
     const uploadFormData = new FormData();
     uploadFormData.append('image', file);
@@ -121,7 +116,6 @@ const BlogEditor = () => {
     }
   };
 
-  // Handle featured image selection
   const handleFeaturedImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -135,7 +129,6 @@ const BlogEditor = () => {
     }
   };
 
-  // Add video
   const addVideo = () => {
     const url = prompt('Enter YouTube or Vimeo URL:');
     if (url) {
@@ -146,7 +139,6 @@ const BlogEditor = () => {
     }
   };
 
-  // Remove video
   const removeVideo = (index) => {
     setFormData(prev => ({
       ...prev,
@@ -154,14 +146,12 @@ const BlogEditor = () => {
     }));
   };
 
-  // Handle category/tag input
   const handleArrayInput = (e, field) => {
     const value = e.target.value;
     const arr = value.split(',').map(item => item.trim()).filter(item => item);
     setFormData(prev => ({ ...prev, [field]: arr }));
   };
 
-  // Handle SEO changes
   const handleSeoChange = (e) => {
     const { name, value } = e.target;
     if (name === 'keywords') {
@@ -178,14 +168,12 @@ const BlogEditor = () => {
     }
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      // Log the data being sent for debugging
       console.log('Submitting blog data:', formData);
 
       if (isEditing) {
@@ -217,7 +205,6 @@ const BlogEditor = () => {
     }
   };
 
-  // ReactQuill modules configuration
   const quillModules = {
     toolbar: [
       [{ 'header': [1, 2, 3, false] }],
@@ -243,8 +230,7 @@ const BlogEditor = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        {/* Main Content Section */}
-        <div className="editor-section">
+                <div className="editor-section">
           <h2>Main Content</h2>
 
           <div className="form-group">
@@ -301,8 +287,7 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        {/* Media Section */}
-        <div className="editor-section">
+                <div className="editor-section">
           <h2>Media</h2>
 
           <div className="form-group">
@@ -344,8 +329,7 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        {/* Organization Section */}
-        <div className="editor-section">
+                <div className="editor-section">
           <h2>Organization</h2>
 
           <div className="form-group">
@@ -369,8 +353,7 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        {/* SEO Section */}
-        <div className="editor-section">
+                <div className="editor-section">
           <h2>SEO Settings</h2>
 
           <div className="form-group">
@@ -409,8 +392,7 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        {/* Publishing Section */}
-        <div className="editor-section">
+                <div className="editor-section">
           <h2>Publishing</h2>
 
           <div className="form-group">
@@ -447,8 +429,7 @@ const BlogEditor = () => {
           </div>
         </div>
 
-        {/* Submit Actions */}
-        <div className="editor-actions">
+                <div className="editor-actions">
           <button type="submit" className="btn-success" disabled={loading}>
             {loading ? 'Saving...' : (isEditing ? 'Update Blog' : 'Create Blog')}
           </button>

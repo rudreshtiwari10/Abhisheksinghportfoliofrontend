@@ -53,8 +53,7 @@ const CompaniesSection = () => {
       <div className="companies-gradient"></div>
 
       <div className="companies-container">
-        {/* Section Header */}
-        <div className="companies-header">
+                <div className="companies-header">
           <div className="section-label">
             <span className="label-line"></span>
             <span className="label-text">Portfolio</span>
@@ -65,8 +64,7 @@ const CompaniesSection = () => {
           </p>
         </div>
 
-        {/* Companies Grid */}
-        {companies && companies.length > 0 ? (
+                {companies && companies.length > 0 ? (
           <div className="companies-grid">
             {companies.map((company, index) => (
               <div
@@ -74,23 +72,20 @@ const CompaniesSection = () => {
                 className="company-card"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Company Logo */}
-                {company.logo && (
+                                {company.logo && (
                   <div className="company-logo">
                     <img src={company.logo} alt={`${company.name} logo`} />
                   </div>
                 )}
 
-                {/* Company Info */}
-                <div className="company-info">
+                                <div className="company-info">
                   <h3 className="company-name">{company.name}</h3>
 
                   {company.description && (
                     <p className="company-description">{company.description}</p>
                   )}
 
-                  {/* Value Proposition */}
-                  {company.valueProposition && (
+                                    {company.valueProposition && (
                     <div className="company-value">
                       <div className="value-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -107,8 +102,7 @@ const CompaniesSection = () => {
                     </div>
                   )}
 
-                  {/* Services */}
-                  {company.services && company.services.length > 0 && (
+                                    {company.services && company.services.length > 0 && (
                     <div className="company-services">
                       <h4 className="services-title">Services</h4>
                       <div className="services-list">
@@ -119,8 +113,7 @@ const CompaniesSection = () => {
                     </div>
                   )}
 
-                  {/* Website Link */}
-                  {company.website && (
+                                    {company.website && (
                     <a
                       href={company.website}
                       target="_blank"

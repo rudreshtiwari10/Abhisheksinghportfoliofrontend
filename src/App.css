@@ -1,65 +1,9 @@
-/* Global Styles
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.home-page {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Smooth Scrolling */
-/* html {
-  scroll-behavior: smooth;
-}
-
-/* Selection */
-/* ::selection {
-  background: rgba(102, 126, 234, 0.3);
-  color: white;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0e27;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-}  
-  
-
-/* /my css */
-/* --- Reset & Variables --- */
 :root {
   --bg-dark: #121212;
   --bg-light: #ffffff;
   --text-primary: #ffffff;
   --text-secondary: #aaaaaa;
-  --accent: #c5a059; /* Gold Accent */
+  --accent: #c5a059;
   --transition: all 0.4s ease;
 }
 
@@ -76,7 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Navbar --- */
 .navbar {
   position: fixed;
   top: 0;
@@ -84,7 +27,7 @@ body {
   width: 100%;
   padding: 1.5rem 3rem;
   background: rgba(18, 18, 18, 0.95);
-  /* backdrop-filter: blur(10px); */
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -118,7 +61,6 @@ body {
   color: var(--accent);
 }
 
-/* --- Hero Section (Home) --- */
 .hero-section {
   height: 100vh;
   display: flex;
@@ -136,7 +78,6 @@ body {
   height: 80%;
 }
 
-/* Left Side Content */
 .hero-text-side {
   flex: 1;
   padding-right: 2rem;
@@ -189,7 +130,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Connect Button & Socials */
 .connect-wrapper {
   display: flex;
   align-items: center;
@@ -241,7 +181,6 @@ body {
   background: #3a3a3a;
 }
 
-/* Right Side Image */
 .hero-image-side {
   flex: 1;
   display: flex;
@@ -281,7 +220,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Scroll Down Indicator */
 .scroll-down-btn {
   position: absolute;
   bottom: 2rem;
@@ -317,7 +255,6 @@ body {
   animation: scrollWheel 2s infinite;
 }
 
-/* --- Sections (Vision, Insights, etc) --- */
 .content-section {
   min-height: 100vh;
   padding: 6rem 5%;
@@ -365,7 +302,6 @@ body {
   color: #ccc;
 }
 
-/* Cards & Grid System */
 .card-grid, .stats-grid {
   display: flex;
   gap: 2rem;
@@ -417,7 +353,6 @@ body {
   padding-left: 10px;
 }
 
-/* --- Contact Form --- */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -439,7 +374,6 @@ body {
   border-color: var(--accent);
 }
 
-/* --- AI Floating Button --- */
 .ai-float-btn {
   position: fixed;
   bottom: 30px;
@@ -479,7 +413,6 @@ body {
   opacity: 1;
 }
 
-/* --- Animations --- */
 @keyframes scrollWheel {
   0% { top: 6px; opacity: 1; }
   100% { top: 20px; opacity: 0; }
@@ -500,20 +433,19 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* --- Responsive Design (Mobile) --- */
 @media (max-width: 900px) {
   .hero-content {
     flex-direction: column-reverse;
     text-align: center;
     justify-content: center;
-    padding-top: 80px; /* Space for Image */
+    padding-top: 80px;
   }
-  
+
   .hero-text-side {
     padding-right: 0;
     margin-top: 2rem;
   }
-  
+
   .hero-stats {
     justify-content: center;
     border-left: none;
@@ -521,18 +453,18 @@ body {
     padding-top: 1rem;
     padding-left: 0;
   }
-  
+
   .connect-wrapper {
     justify-content: center;
   }
-  
+
   .image-frame {
     width: 250px;
     height: 300px;
   }
 
   .nav-links {
-    display: none; /* Hide nav links on mobile for simplicity */
+    display: none;
   }
 
   .navbar {

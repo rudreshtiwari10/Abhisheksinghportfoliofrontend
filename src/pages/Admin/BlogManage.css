@@ -4,7 +4,6 @@
   font-size: 15px;
 }
 
-/* Filter Tabs */
 .filter-tabs {
   display: flex;
   gap: 12px;
@@ -35,7 +34,6 @@
   border-bottom-color: #667eea;
 }
 
-/* Blog List */
 .blog-list {
   display: flex;
   flex-direction: column;
@@ -165,7 +163,6 @@
   align-self: flex-start;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .blog-list-item {
     flex-direction: column;

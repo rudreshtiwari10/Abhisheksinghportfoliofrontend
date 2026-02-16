@@ -18,10 +18,9 @@ const MessageFormModal = ({ isOpen, onClose }) => {
   const [attachment, setAttachment] = useState(null);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'rate-limit'
+  const [submitStatus, setSubmitStatus] = useState(null);
   const [statusMessage, setStatusMessage] = useState('');
 
-  // Close modal on ESC key
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -32,7 +31,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -40,18 +38,16 @@ const MessageFormModal = ({ isOpen, onClose }) => {
       [name]: type === 'checkbox' ? checked : value
     }));
 
-    // Clear error for this field
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
-  // Handle file selection
   const handleFileChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
-      // Validate file type
+
       const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!allowedTypes.includes(file.type)) {
         setErrors(prev => ({ ...prev, attachment: 'Only PDF, DOC, and DOCX files are allowed' }));
@@ -59,7 +55,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
         return;
       }
 
-      // Validate file size (5MB max)
       if (file.size > 5 * 1024 * 1024) {
         setErrors(prev => ({ ...prev, attachment: 'File size must be less than 5MB' }));
         e.target.value = '';
@@ -71,7 +66,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // Validate form
   const validateForm = () => {
     const newErrors = {};
 
@@ -109,7 +103,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -121,7 +114,7 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     setSubmitStatus(null);
 
     try {
-      // Prepare form data for multipart/form-data
+
       const submitData = new FormData();
       submitData.append('fullName', formData.fullName.trim());
       submitData.append('email', formData.email.trim());
@@ -147,7 +140,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
         setSubmitStatus('success');
         setStatusMessage('Your message has been sent successfully! We will get back to you soon.');
 
-        // Reset form after 3 seconds
         setTimeout(() => {
           resetForm();
           setTimeout(() => {
@@ -156,7 +148,7 @@ const MessageFormModal = ({ isOpen, onClose }) => {
         }, 3000);
 
       } else if (response.status === 429) {
-        // Rate limit exceeded
+
         setSubmitStatus('rate-limit');
         setStatusMessage('You have reached the message limit. Please try again after an hour.');
       } else {
@@ -173,7 +165,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // Reset form
   const resetForm = () => {
     setFormData({
       fullName: '',
@@ -190,12 +181,10 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     setSubmitStatus(null);
     setStatusMessage('');
 
-    // Clear file input
     const fileInput = document.getElementById('modal-attachment');
     if (fileInput) fileInput.value = '';
   };
 
-  // Handle close
   const handleClose = () => {
     if (!isSubmitting) {
       resetForm();
@@ -203,21 +192,18 @@ const MessageFormModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // Don't render if not open
   if (!isOpen) return null;
 
   return (
     <div className={`modal-overlay ${isOpen ? 'modal-open' : ''}`} onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
-        <button className="modal-close-btn" onClick={handleClose} aria-label="Close">
+                <button className="modal-close-btn" onClick={handleClose} aria-label="Close">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
 
-        {/* Status Messages */}
-        {submitStatus === 'success' && (
+                {submitStatus === 'success' && (
           <div className="status-message success-status">
             <div className="status-icon">✓</div>
             <div className="status-content">
@@ -247,8 +233,7 @@ const MessageFormModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {/* Form */}
-        {!submitStatus && (
+                {!submitStatus && (
           <>
             <div className="modal-header">
               <h2>Send us a Message</h2>
@@ -257,7 +242,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
 
             <form onSubmit={handleSubmit} className="modal-form">
               <div className="form-row">
-                {/* Full Name */}
                 <div className="form-group">
                   <label htmlFor="modal-fullName">
                     Full Name <span className="required">*</span>
@@ -274,7 +258,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                   {errors.fullName && <span className="error-text">{errors.fullName}</span>}
                 </div>
 
-                {/* Email */}
                 <div className="form-group">
                   <label htmlFor="modal-email">
                     Email Address <span className="required">*</span>
@@ -293,7 +276,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
               </div>
 
               <div className="form-row">
-                {/* Organization */}
                 <div className="form-group">
                   <label htmlFor="modal-organization">Organization / Company</label>
                   <input
@@ -306,7 +288,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                   />
                 </div>
 
-                {/* Phone */}
                 <div className="form-group">
                   <label htmlFor="modal-phone">Phone Number</label>
                   <input
@@ -320,7 +301,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 </div>
               </div>
 
-              {/* Purpose */}
               <div className="form-group">
                 <label htmlFor="modal-purpose">
                   Purpose of Contact <span className="required">*</span>
@@ -342,7 +322,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 {errors.purpose && <span className="error-text">{errors.purpose}</span>}
               </div>
 
-              {/* Purpose Detail (shown only if Other is selected) */}
               {formData.purpose === 'Other' && (
                 <div className="form-group">
                   <label htmlFor="modal-purposeDetail">
@@ -361,7 +340,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 </div>
               )}
 
-              {/* Message */}
               <div className="form-group">
                 <label htmlFor="modal-message">
                   Message <span className="required">*</span>
@@ -378,7 +356,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 {errors.message && <span className="error-text">{errors.message}</span>}
               </div>
 
-              {/* File Attachment */}
               <div className="form-group">
                 <label htmlFor="modal-attachment">
                   Attachment (Optional)
@@ -399,7 +376,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 )}
               </div>
 
-              {/* Consent */}
               <div className="form-group checkbox-group">
                 <label className="checkbox-label">
                   <input
@@ -416,7 +392,6 @@ const MessageFormModal = ({ isOpen, onClose }) => {
                 {errors.consentGiven && <span className="error-text">{errors.consentGiven}</span>}
               </div>
 
-              {/* Submit Button */}
               <div className="form-actions">
                 <button
                   type="button"

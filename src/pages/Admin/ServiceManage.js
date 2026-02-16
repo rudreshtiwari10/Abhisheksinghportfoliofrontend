@@ -28,7 +28,6 @@ const ServiceManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all services
   const fetchServices = async () => {
     try {
       setLoading(true);
@@ -46,7 +45,6 @@ const ServiceManage = () => {
     fetchServices();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -55,7 +53,6 @@ const ServiceManage = () => {
     }));
   };
 
-  // Handle features array
   const addFeature = () => {
     if (featureInput.trim()) {
       setFormData(prev => ({
@@ -73,13 +70,12 @@ const ServiceManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/service/${editingId}`,
           formData,
@@ -87,7 +83,7 @@ const ServiceManage = () => {
         );
         alert('Service updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/service`,
           formData,
@@ -96,7 +92,6 @@ const ServiceManage = () => {
         alert('Service created successfully!');
       }
 
-      // Reset form
       setFormData({
         title: '',
         description: '',
@@ -115,7 +110,6 @@ const ServiceManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (service) => {
     setFormData({
       title: service.title,
@@ -130,7 +124,6 @@ const ServiceManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this service?')) {
       return;
@@ -146,7 +139,6 @@ const ServiceManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({
       title: '',
@@ -162,7 +154,6 @@ const ServiceManage = () => {
     setFeatureInput('');
   };
 
-  // Filter services
   const filteredServices = services.filter(service => {
     const matchesSearch = service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -170,7 +161,6 @@ const ServiceManage = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Get unique categories
   const categories = [...new Set(services.map(s => s.category).filter(Boolean))];
 
   return (
@@ -185,8 +175,7 @@ const ServiceManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Service' : 'Add New Service'}</h2>
           <form onSubmit={handleSubmit}>
@@ -322,8 +311,7 @@ const ServiceManage = () => {
         </div>
       )}
 
-      {/* Search and Filter */}
-      <div className="form-card" style={{ marginBottom: '20px' }}>
+            <div className="form-card" style={{ marginBottom: '20px' }}>
         <div className="form-row">
           <div className="form-group">
             <label>Search Services</label>
@@ -346,8 +334,7 @@ const ServiceManage = () => {
         </div>
       </div>
 
-      {/* List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : filteredServices.length === 0 ? (

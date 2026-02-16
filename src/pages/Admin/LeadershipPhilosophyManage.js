@@ -24,7 +24,6 @@ const LeadershipPhilosophyManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all leadership philosophies
   const fetchPhilosophies = async () => {
     try {
       setLoading(true);
@@ -42,7 +41,6 @@ const LeadershipPhilosophyManage = () => {
     fetchPhilosophies();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -51,13 +49,12 @@ const LeadershipPhilosophyManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/leadership-philosophy/${editingId}`,
           formData,
@@ -65,7 +62,7 @@ const LeadershipPhilosophyManage = () => {
         );
         alert('Leadership philosophy updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/leadership-philosophy`,
           formData,
@@ -74,7 +71,6 @@ const LeadershipPhilosophyManage = () => {
         alert('Leadership philosophy created successfully!');
       }
 
-      // Reset form
       setFormData({
         title: '',
         description: '',
@@ -91,7 +87,6 @@ const LeadershipPhilosophyManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (philosophy) => {
     setFormData({
       title: philosophy.title,
@@ -104,7 +99,6 @@ const LeadershipPhilosophyManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this leadership philosophy?')) {
       return;
@@ -120,7 +114,6 @@ const LeadershipPhilosophyManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({
       title: '',
@@ -133,7 +126,6 @@ const LeadershipPhilosophyManage = () => {
     setShowForm(false);
   };
 
-  // Filter philosophies
   const filteredPhilosophies = philosophies.filter(philosophy => {
     const searchLower = searchTerm.toLowerCase();
     return philosophy.title.toLowerCase().includes(searchLower) ||
@@ -152,8 +144,7 @@ const LeadershipPhilosophyManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Leadership Philosophy' : 'Add New Leadership Philosophy'}</h2>
           <form onSubmit={handleSubmit}>
@@ -229,8 +220,7 @@ const LeadershipPhilosophyManage = () => {
         </div>
       )}
 
-      {/* Search */}
-      <div className="form-card" style={{ marginBottom: '20px' }}>
+            <div className="form-card" style={{ marginBottom: '20px' }}>
         <div className="form-group">
           <label>Search Leadership Philosophies</label>
           <input
@@ -242,8 +232,7 @@ const LeadershipPhilosophyManage = () => {
         </div>
       </div>
 
-      {/* List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : filteredPhilosophies.length === 0 ? (

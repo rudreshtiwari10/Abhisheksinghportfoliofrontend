@@ -30,7 +30,6 @@ const CompanyManage = () => {
     'Content-Type': 'application/json'
   };
 
-  // Fetch all companies
   const fetchCompanies = async () => {
     try {
       setLoading(true);
@@ -48,7 +47,6 @@ const CompanyManage = () => {
     fetchCompanies();
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -57,7 +55,6 @@ const CompanyManage = () => {
     }));
   };
 
-  // Handle services array
   const addService = () => {
     if (serviceInput.trim()) {
       setFormData(prev => ({
@@ -75,7 +72,6 @@ const CompanyManage = () => {
     }));
   };
 
-  // Handle geographic reach array
   const addReach = () => {
     if (reachInput.trim()) {
       setFormData(prev => ({
@@ -93,13 +89,12 @@ const CompanyManage = () => {
     }));
   };
 
-  // Handle create/update
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editingId) {
-        // Update existing
+
         await axios.put(
           `${API_URL}/api/content/admin/company/${editingId}`,
           formData,
@@ -107,7 +102,7 @@ const CompanyManage = () => {
         );
         alert('Company updated successfully!');
       } else {
-        // Create new
+
         await axios.post(
           `${API_URL}/api/content/admin/company`,
           formData,
@@ -116,7 +111,6 @@ const CompanyManage = () => {
         alert('Company created successfully!');
       }
 
-      // Reset form
       setFormData({
         name: '',
         description: '',
@@ -137,7 +131,6 @@ const CompanyManage = () => {
     }
   };
 
-  // Handle edit
   const handleEdit = (company) => {
     setFormData({
       name: company.name,
@@ -154,7 +147,6 @@ const CompanyManage = () => {
     setShowForm(true);
   };
 
-  // Handle delete
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this company?')) {
       return;
@@ -170,7 +162,6 @@ const CompanyManage = () => {
     }
   };
 
-  // Cancel editing
   const handleCancel = () => {
     setFormData({
       name: '',
@@ -189,7 +180,6 @@ const CompanyManage = () => {
     setReachInput('');
   };
 
-  // Filter companies
   const filteredCompanies = companies.filter(company => {
     const searchLower = searchTerm.toLowerCase();
     return company.name.toLowerCase().includes(searchLower) ||
@@ -209,8 +199,7 @@ const CompanyManage = () => {
         </button>
       </div>
 
-      {/* Create/Edit Form */}
-      {showForm && (
+            {showForm && (
         <div className="form-card">
           <h2>{editingId ? 'Edit Company' : 'Add New Company'}</h2>
           <form onSubmit={handleSubmit}>
@@ -403,8 +392,7 @@ const CompanyManage = () => {
         </div>
       )}
 
-      {/* Search */}
-      <div className="form-card" style={{ marginBottom: '20px' }}>
+            <div className="form-card" style={{ marginBottom: '20px' }}>
         <div className="form-group">
           <label>Search Companies</label>
           <input
@@ -416,8 +404,7 @@ const CompanyManage = () => {
         </div>
       </div>
 
-      {/* List */}
-      <div className="content-list">
+            <div className="content-list">
         {loading ? (
           <div className="loading">Loading...</div>
         ) : filteredCompanies.length === 0 ? (
