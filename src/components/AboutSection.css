@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+
 .about-section {
   position: relative;
   min-height: 100vh;
@@ -108,11 +110,36 @@
 }
 
 .bio-paragraph {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 18px;
-  line-height: 1.8;
-  color: #a0a0a0;
+  font-weight: 400;
+  line-height: 1.95;
+  color: #c0bab2;
   margin: 0;
   text-align: justify;
+  letter-spacing: 0.015em;
+  word-spacing: 0.05em;
+}
+
+.bio-paragraph:first-child::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.2em;
+  font-weight: 500;
+  line-height: 0.8;
+  float: left;
+  margin-right: 10px;
+  margin-top: 8px;
+  background: linear-gradient(145deg, #e8c98a 0%, #c5a065 50%, #a07840 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(197, 160, 101, 0.35));
+}
+
+.bio-paragraph:not(:first-child) {
+  font-style: italic;
+  color: #b0a898;
+  font-size: 17px;
 }
 
 .about-highlights {
@@ -129,9 +156,11 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #e2ddd6;
 }
 
 .highlight-item svg {
@@ -283,9 +312,12 @@
 }
 
 .education-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #ffffff;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 22px;
+  font-weight: 500;
+  font-style: italic;
+  color: #e8d5b0;
+  letter-spacing: 0.05em;
   margin: 0 0 24px 0;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(197, 160, 101, 0.2);
@@ -304,26 +336,34 @@
 }
 
 .education-degree {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
+  font-weight: 500;
+  color: #f0ece5;
+  letter-spacing: 0.01em;
 }
 
 .education-field {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
   font-size: 16px;
+  font-style: italic;
   color: #c5a065;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .education-institution {
-  font-size: 15px;
-  color: #a0a0a0;
+  font-size: 14px;
+  color: #8a8a8a;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .education-year {
-  font-size: 14px;
-  color: #808080;
+  font-size: 13px;
+  color: #666;
   margin-top: 4px;
+  letter-spacing: 0.08em;
 }
 
 @keyframes fadeInUp {
@@ -348,6 +388,7 @@
 
   .bio-paragraph {
     font-size: 17px;
+    line-height: 1.9;
   }
 }
 
@@ -375,6 +416,7 @@
 
   .bio-paragraph {
     text-align: left;
+    line-height: 1.85;
   }
 }
 
